@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Atlas Research Agent</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="field" aria-hidden="true"></canvas>
+    <main class="shell">
+      <aside class="rail" aria-label="Research spaces">
+        <div class="brand">
+          <span class="mark">A</span>
+          <div>
+            <strong>Atlas</strong>
+            <span>Research Agent</span>
+          </div>
+        </div>
+        <button class="rail-button active" data-view="lab" title="Research Lab">Lab</button>
+        <button class="rail-button" data-view="sources" title="Source Graph">Graph</button>
+        <button class="rail-button" data-view="memory" title="Agent Memory">Memory</button>
+        <button class="rail-button" data-view="brief" title="Brief Builder">Brief</button>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Personal research system</p>
+            <h1>Ask, chain, verify, brief.</h1>
+          </div>
+          <div class="status-strip" aria-label="Agent status">
+            <span><b id="confidence">91</b>% confidence</span>
+            <span><b id="tokenCount">8.4k</b> context</span>
+            <span class="pulse">Live synthesis</span>
+          </div>
+        </header>
+
+        <section class="composer" aria-label="Research prompt">
+          <textarea id="question" spellcheck="true">Map the biggest opportunities for personal AI research agents in 2026, including product gaps, risks, and monetization models.</textarea>
+          <div class="composer-actions">
+            <div class="segmented" role="tablist" aria-label="Research depth">
+              <button class="selected" data-depth="fast">Fast</button>
+              <button data-depth="deep">Deep</button>
+              <button data-depth="expert">Expert</button>
+            </div>
+            <label class="toggle">
+              <input id="verify" type="checkbox" checked />
+              <span>Cross-check claims</span>
+            </label>
+            <label class="toggle">
+              <input id="memory" type="checkbox" checked />
+              <span>Use memory</span>
+            </label>
+            <button id="run" class="primary">Run Research</button>
+          </div>
+        </section>
+
+        <section class="grid">
+          <article class="panel agent-panel" data-panel="lab">
+            <div class="panel-head">
+              <h2>Agent Chain</h2>
+              <span id="phase">Ready</span>
+            </div>
+            <ol id="chain" class="chain"></ol>
+          </article>
+
+          <article class="panel output-panel" data-panel="brief">
+            <div class="panel-head">
+              <h2>Research Brief</h2>
+              <button id="copyBrief" class="ghost">Copy</button>
+            </div>
+            <div id="briefText" class="brief"></div>
+          </article>
+
+          <article class="panel source-panel" data-panel="sources">
+            <div class="panel-head">
+              <h2>Source Radar</h2>
+              <span id="sourceCount">0 sources</span>
+            </div>
+            <div id="sources" class="sources"></div>
+          </article>
+
+          <article class="panel memory-panel" data-panel="memory">
+            <div class="panel-head">
+              <h2>Memory</h2>
+              <button id="clearMemory" class="ghost">Clear</button>
+            </div>
+            <div id="memories" class="memories"></div>
+            <form id="memoryForm" class="memory-form">
+              <input id="memoryInput" placeholder="Add preference, constraint, or source habit" />
+              <button>Add</button>
+            </form>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
